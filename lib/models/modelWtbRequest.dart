@@ -1,0 +1,65 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class modelRequerimientos {
+  String id,
+      nombre,
+      notas,
+      model,
+      reference,
+      fechaInicio,
+      fechaFinal,
+      foto,
+      imagen2,
+      imagen3,
+      imagen4,
+      imagen5,
+      imagen6,
+      descripcion;
+  bool ntq,
+      hardc,
+      medc,
+      softc,
+      sold,
+      soldOrder,
+      used,
+      slider,
+      nuevo,
+      complete,
+      watchcard,
+      naked;
+  Timestamp fecha;
+  Timestamp fechaRenovacion;
+  String idUsuario;
+
+  modelRequerimientos(
+    this.id,
+    this.nombre,
+    this.notas,
+    this.model,
+    this.reference,
+    this.fechaInicio,
+    this.fechaFinal,
+    this.ntq,
+    this.hardc,
+    this.medc,
+    this.softc,
+    this.sold,
+    this.soldOrder,
+    this.used,
+    this.slider,
+    this.nuevo,
+    this.complete,
+    this.watchcard,
+    this.naked,
+    this.fecha,
+    this.foto,
+    this.imagen2,
+    this.imagen3,
+    this.imagen4,
+    this.imagen5,
+    this.imagen6,
+    this.fechaRenovacion,
+    this.idUsuario,
+    this.descripcion,
+  );
+}
