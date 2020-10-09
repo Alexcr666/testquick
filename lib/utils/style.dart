@@ -25,6 +25,31 @@ estiloCampoTexto(String hint){
     filled: true,
   );
 }
+estiloCampoTextoSearch(String hint){
+  return InputDecoration(
+    border: new OutlineInputBorder(
+      borderSide: BorderSide(
+        width: 0,
+        style: BorderStyle.none,
+      ),
+      borderRadius: const BorderRadius.all(
+        const Radius.circular(100),
+      ),
+    ),
+    hintText: hint,
+    hintStyle:
+    new TextStyle(color: Colors.white),
+    fillColor: colorTextoOpacidad,
+    filled: true,
+  );
+}
+estiloRedondeado(var color,double num){
+  return BoxDecoration(
+    borderRadius: BorderRadius.circular(num),
+    color:color,
+
+  );
+}
 estiloCampoTextoMulti(String hint){
   return InputDecoration(
     border: new OutlineInputBorder(

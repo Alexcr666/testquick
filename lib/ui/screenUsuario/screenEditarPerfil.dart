@@ -293,6 +293,7 @@ class _screenEditarPerfilState extends State<screenEditarPerfil> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     //  SystemChrome.setEnabledSystemUIOverlays([]);
     contex2 = context;
     return Scaffold(

@@ -93,28 +93,23 @@ Widget widgetOpacity(_display, Widget widget) {
   );
 }
 
+
+
 Widget widgetImage(String urlFoto, double width, double heigth) {
-  return
-
-
-    Container(
-
+  return Container(
     width: width,
     height: heigth,
-
     child:
-    /*Image.memory(
+        /*Image.memory(
       base64Decode(urlFoto),
       height: heigth,
       width: width,
     ),*/
-    FadeInImage(
+        FadeInImage(
       placeholder: AssetImage('assets/images/placeholder.png'),
-      image:  MemoryImage(base64Decode(urlFoto) ),
-     // fit: BoxFit.cover,
+      image: MemoryImage(base64Decode(urlFoto)),
+          fit: BoxFit.cover,
     ),
-
-
   );
 }
 
@@ -161,7 +156,6 @@ Widget widgetItemFiltro2(String texto, bool filtro) {
 
 Widget widgetBottom(BuildContext context, String url, String texto) {
   return Stack(
-
     children: <Widget>[
       Image.asset("assets/images/image/piePagina.png"),
       Positioned.fill(
@@ -190,7 +184,7 @@ Widget widgetBottom(BuildContext context, String url, String texto) {
 Widget widgetIconCheckSi(String urlIcon, String titulo, Color colorPrimario) {
   return Container(
     //height: 40,
-   // margin: EdgeInsets.only(left: 5),
+    // margin: EdgeInsets.only(left: 5),
 
     child: Column(
       children: [
@@ -221,7 +215,7 @@ Widget widgetIconCheckSi(String urlIcon, String titulo, Color colorPrimario) {
 Widget widgetIconCheck(String urlIcon, String titulo, Color colorPrimario) {
   return Container(
     //height: 40,
-   // margin: EdgeInsets.only(left: 5),
+    // margin: EdgeInsets.only(left: 5),
 
     child: Column(
       children: [
@@ -359,22 +353,22 @@ Widget widgetOpcionesRelojes(String urlIcon) {
     ),
   );
 }
+
 Widget widgetOpcionesAgregarFotoPrincipal(File file) {
   return Container(
     width: 100,
     child: file == null
-
-
-        ?  Container(
-       margin: EdgeInsets.all(30),
-        child: iconSvgColor("assets/images/icon/iconClockPrincipal.svg",20,20,colorPrimario))
+        ? Container(
+            margin: EdgeInsets.all(30),
+            child: iconSvgColor("assets/images/icon/iconClockPrincipal.svg", 20,
+                20, colorPrimario))
         : ClipRRect(
-      borderRadius: BorderRadius.circular(8.0),
-      child: Image.file(
-        file,
-        height: 80,
-      ),
-    ),
+            borderRadius: BorderRadius.circular(8.0),
+            child: Image.file(
+              file,
+              height: 80,
+            ),
+          ),
     height: 100,
     decoration: new BoxDecoration(
       color: Colors.white,
@@ -390,6 +384,7 @@ Widget widgetOpcionesAgregarFotoPrincipal(File file) {
     ),
   );
 }
+
 Widget widgetOpcionesAgregarFoto(File file) {
   return Container(
     width: 100,
@@ -502,7 +497,6 @@ Widget widgetBotonOpciones(String texto) {
   );
 }
 
-
 Widget iconSvg(String url, double width, double heigth) {
   return Container(
     height: heigth,
@@ -528,7 +522,6 @@ Widget iconSvgColor(String url, double width, double heigth, var color) {
 Widget widgetCabezera(BuildContext context, String titulo) {
   return Row(
     children: [
-
       GestureDetector(
           onTap: () {
             funcionAtras(context);
@@ -538,14 +531,18 @@ Widget widgetCabezera(BuildContext context, String titulo) {
             color: Colors.white,
             size: 40,
           )),
-      Expanded(child: SizedBox(),),
-      Text(
-       titulo.toUpperCase(),
-        style: estiloTextoSpacingFont1(titulo == stringRecuperarClavetxt?18:23, Colors.white, false),
+      Expanded(
+        child: SizedBox(),
       ),
-      Expanded(child: SizedBox(),),
+      Text(
+        titulo.toUpperCase(),
+        style: estiloTextoSpacingFont1(
+            titulo == stringRecuperarClavetxt ? 18 : 23, Colors.white, false),
+      ),
+      Expanded(
+        child: SizedBox(),
+      ),
       espaciado(0, 40),
-
     ],
   );
 }
@@ -575,12 +572,11 @@ Widget widgetMisFavoritos(BuildContext context) {
                 "assets/images/icon/search.svg", 80, 80, colorPrimario),
           ),
           espaciado(30, 0),
-         Text(
-              " "+stringNoResultados,
-              // textAlign: TextAlign.center,
-              style: estiloTexto(20, colorPrimario, true),
-            ),
-
+          Text(
+            " " + stringNoResultados,
+            // textAlign: TextAlign.center,
+            style: estiloTexto(20, colorPrimario, true),
+          ),
         ],
       ),
     ),
@@ -873,8 +869,7 @@ showProgressGlobal(var context, bool estado) {
 flusbarMensaje(String titulo, String mensaje, var color, var context) {
   return Flushbar(
     padding: EdgeInsets.all(22),
-   // title: mensaje,
-
+    // title: mensaje,
 
     message: mensaje,
     duration: Duration(seconds: 2),

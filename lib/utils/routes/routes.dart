@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:testquick/models/modelUsuario.dart';
+import 'package:testquick/ui/screenChat/screenChat.dart';
 import 'package:testquick/ui/screenInicio/screenInfoRequest.dart';
 import 'package:testquick/ui/screenInicio/screenInicio.dart';
 import 'package:testquick/ui/screenUsuario/screeLogin.dart';
@@ -21,6 +23,12 @@ routesCambiarClave(BuildContext context){
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => screenCambiarClave()),
+  );
+}
+routesChatUsuario(BuildContext context,String idChat,modelUsuario){
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => screenChatUsuario(idChat: idChat,usuario: modelUsuario,)),
   );
 }
 

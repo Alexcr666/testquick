@@ -344,6 +344,9 @@ String stringFaltaClave = lenguaje == "es_ES"
 String stringPerfilActualizado = lenguaje == "es_ES"?"Perfil actualizado":"Profile updated";
 String stringEnviarMensaje = "Enviar Mensaje";
 String stringChats = "Chats";
+String stringAppName = "TestQuick";
+String stringGrabando = "Grabando..";
+
 
 
 

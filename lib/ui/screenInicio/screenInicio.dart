@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:testquick/color/color.dart';
+import 'package:testquick/endPoint/usuarios/endPointUsuarios.dart';
 import 'package:testquick/string/string.dart';
 import 'package:testquick/utils/style.dart';
 import 'package:testquick/widget/card/cardInicio.dart';
@@ -13,6 +15,7 @@ class screenInicio extends StatefulWidget {
 class _screenInicioState extends State<screenInicio> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return Scaffold(
       backgroundColor: colorFondo,
       body: Column(
@@ -40,6 +43,10 @@ class _screenInicioState extends State<screenInicio> {
                 height: 400,
                 color: colorFondo.withOpacity(0.5),
               ),
+      Center(child: Container(
+          margin: EdgeInsets.only(top: 35),
+          child: Text(stringAppName,style: estiloTexto(34,Colors.white,true)))),
+
       Positioned.fill(
         child: Align(
             alignment: Alignment.bottomCenter,
@@ -105,11 +112,17 @@ class _screenInicioState extends State<screenInicio> {
 
             ],
           ),
-          widgetCardChat(),
+          endPointListaUsuarios(context,1),
 
 
         ],
       ),
     );
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SystemChrome.setEnabledSystemUIOverlays([]);
   }
 }

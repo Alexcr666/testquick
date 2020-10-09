@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 var colorGradient1 = Color(0xff7747f3);
 var colorGradient2 = Color(0xff48a9f2);
+var colorMensajeUser1 = Color(0xff38465b);
+var colorMensajeUser2 = Color(0xff30567b);
+
+
 
 var colorGrisFondo = Color(0xffF2F2F2);
 var colorPrimario = Color(0xFF0D577A);

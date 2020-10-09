@@ -43,6 +43,7 @@ dependencies:
   shared_preferences: ^0.5.3
   image_crop: ^0.3.3
   keyboard_actions: ^3.3.0+1
+  audio_recorder: ^1.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
