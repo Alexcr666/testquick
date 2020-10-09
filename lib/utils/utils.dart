@@ -6,12 +6,24 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:testquick/string/string.dart';
 import 'package:testquick/widget/widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 funcionAtras(context) {
   Navigator.pop(context);
+}
+funcionPermisos() async {
+  if (await Permission.contacts.request().isGranted) {
+  // Either the permission was already granted before or the user just granted it.
+  }
+
+// You can request multiple permissions at once.
+  Map<Permission, PermissionStatus> statuses = await [
+  Permission.storage,
+  Permission.microphone,
+  ].request();
 }
 
 String convertirTexto(String encoded) {
@@ -26,14 +38,12 @@ extension StringExtension on String {
 }
 
 Future convertBase64(File file) async {
-
-
   var result = await FlutterImageCompress.compressWithFile(
     file.absolute.path,
     minWidth: 500,
-   minHeight: 500,
+    minHeight: 500,
     quality: 50,
-   // rotate: 90,
+    // rotate: 90,
   );
   print(result.toString());
   print(result.length);
@@ -72,52 +82,10 @@ funcionSalirAlerta(BuildContext context) {
   Navigator.of(context).pop();
 }
 
-funcionNavegador(String url) {
-  _launchURL() async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  _launchURL();
-}
-
-funcionLLamarNumero(String telefono) {
-  _launchCaller() async {
-    String url = "tel:$telefono";
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  _launchCaller();
-}
-
-funcionSumarValores(int op1, int op2) {
-  return op1 + op2;
-}
-
-funcionSumarValoresDouble(int op1, double op2) {
-  return op1 + op2;
-}
-
-funcionSumarValoresDouble2(double op1, double op2) {
-  return op1 + op2;
-}
-
 funcionFechaWidget(bool estado, String horaInicio, String horaFinal) {
   return estado == false
       ? "Cerrado"
       : horaInicio + " - " + horaFinal + " PM".toString();
-}
-
-funcionConvertirMoneda(String numero) {
-  final formatter = new NumberFormat("#,###");
-  return "\u0024 " + formatter.format(int.parse(numero));
 }
 
 String printDuration(Duration duration) {

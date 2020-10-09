@@ -154,24 +154,11 @@ class _screenCrearUsuarioState extends State<screenCrearUsuario> {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
 
     return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/image/relojApp.jpg"), fit: BoxFit.cover)),
+      color: colorFondo,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(
           children: [
-            /*Image.asset(
-              "assets/images/image/relojApp.jpg",
-              height: double.infinity,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),*/
-            Container(
-              width: double.infinity,
-              height: double.infinity,
-              color: Colors.black.withOpacity(0.6),
-            ),
             Container(
               child: KeyboardActions(
                 config: _buildConfig(context),
@@ -189,7 +176,8 @@ class _screenCrearUsuarioState extends State<screenCrearUsuario> {
                                 child: Column(
                                   children: [
                                     espaciado(30, 0),
-                                    widgetCabezera(context, stringRegistrarsetxt),
+                                    widgetCabezera(
+                                        context, stringRegistrarsetxt),
                                     espaciado(60, 0),
                                     TextFormField(
                                         inputFormatters: [
@@ -403,35 +391,28 @@ class _screenCrearUsuarioState extends State<screenCrearUsuario> {
                                     if (_controllerNombreCompleto.text.length >
                                         3) {
                                       _nombreCompleto = 1;
-
                                     } else {
                                       _nombreCompleto = 2;
                                     }
-
 
                                     if (isEmail(_controllerEmail.text) ==
                                         true) {
                                       _correo = 1;
                                       actualizar();
-
                                     } else {
                                       _correo = 2;
                                     }
                                     if (_controllerCelular.text.length > 8) {
                                       _celular = 1;
                                       actualizar();
-
                                     } else {
                                       _celular = 2;
                                     }
 
-
                                     if (_controllerClave.text.length <= 5) {
-
                                     } else {
                                       _clave = 2;
                                     }
-
 
                                     if (_controllerNombreCompleto.text.length >
                                         3) {
@@ -440,29 +421,37 @@ class _screenCrearUsuarioState extends State<screenCrearUsuario> {
                                           true) {
                                         _correo = 1;
                                         actualizar();
-                                        if (_controllerCelular.text.length > 8) {
+                                        if (_controllerCelular.text.length >
+                                            8) {
                                           _celular = 1;
                                           actualizar();
-                                          if (_controllerClave.text.length <= 6) {
-
-                                            flusbarMensaje(notificacionString,
-                                                claveMenor, Colors.red, context);
+                                          if (_controllerClave.text.length <=
+                                              6) {
+                                            flusbarMensaje(
+                                                notificacionString,
+                                                claveMenor,
+                                                Colors.red,
+                                                context);
                                           } else {
                                             if (checkRegistro == true) {
-                                              if (_formKeyCrearCuenta.currentState
+                                              if (_formKeyCrearCuenta
+                                                  .currentState
                                                   .validate()) {
                                                 String celular =
                                                     _controllerCelular.text
                                                         .toString();
 
-                                                funcionVerificarConexion(context)
+                                                funcionVerificarConexion(
+                                                        context)
                                                     .then((value) {
                                                   if (value == true) {
                                                     authRegistro(
                                                             context,
-                                                            _controllerEmail.text
+                                                            _controllerEmail
+                                                                .text
                                                                 .toString(),
-                                                            _controllerClave.text
+                                                            _controllerClave
+                                                                .text
                                                                 .toString())
                                                         .then((value) {
                                                       //routesInicioFinal(context, 2);
@@ -480,7 +469,8 @@ class _screenCrearUsuarioState extends State<screenCrearUsuario> {
                                                                   uidUser,
                                                                   celular)
                                                               .then((value) {
-                                                            if (value != false) {
+                                                            if (value !=
+                                                                false) {
                                                               guardarSession(
                                                                   uidUser);
 
@@ -546,7 +536,7 @@ class _screenCrearUsuarioState extends State<screenCrearUsuario> {
                                                   }
                                                 });
                                               }
-                                            }else{
+                                            } else {
                                               flusbarMensaje(
                                                   notificacionString,
                                                   stringAceptarTerminos,

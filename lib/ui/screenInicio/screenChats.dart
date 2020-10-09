@@ -7,13 +7,15 @@ import 'package:testquick/widget/card/cardInicio.dart';
 import 'package:testquick/widget/card/cardItemChat.dart';
 import 'package:testquick/widget/widget.dart';
 import 'package:flutter/services.dart';
+
 class screenChats extends StatefulWidget {
   @override
   _screenChatsState createState() => _screenChatsState();
 }
 
 class _screenChatsState extends State<screenChats> {
-
+  String filtroUsuario = "";
+  final controllerBuscarUsuario = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,21 +51,22 @@ class _screenChatsState extends State<screenChats> {
             ),
             espaciado(20, 0),
             Container(
-              margin: EdgeInsets.only(left: 20,right: 20),
-              child: TextFormField(
-                  validator: (value) {
-                    if (value.trim().isEmpty) {
-                      return favordigitarelcampoString;
+              margin: EdgeInsets.only(left: 20, right: 20),
+              child: TextField(
+                  controller: controllerBuscarUsuario,
+                  onChanged: (text) {
+                    if (text.trim().length != 0) {
+                      filtroUsuario = text;
+                    } else {
+                      filtroUsuario = text;
                     }
-                    return null;
+                    filtroUsuario = text;
+                    setState(() {});
                   },
                   style: estiloTextoSpacingFont4(15, Colors.white, true),
-
                   textInputAction: TextInputAction.go,
-                  decoration: estiloCampoTextoSearch(
-                      stringTelefono)),
+                  decoration: estiloCampoTextoSearch(stringBusqueda)),
             ),
-
             SizedBox(height: 10.0),
             Container(
               height: MediaQuery.of(context).size.height,
@@ -71,18 +74,18 @@ class _screenChatsState extends State<screenChats> {
                 color: colorFondo,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
               ),
-              child:   endPointListaUsuarios(context,2),
+              child: endPointListaUsuarios(context, 2, filtroUsuario),
             )
           ],
         ),
       ),
     );
   }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
   }
-
 }

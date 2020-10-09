@@ -13,27 +13,33 @@ routesInicio(BuildContext context) {
     MaterialPageRoute(builder: (context) => screenInfoRequest()),
   );
 }
-routesCrearCuentaFinal(BuildContext context){
+
+routesCrearCuentaFinal(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => screenCrearUsuario()),
   );
 }
-routesCambiarClave(BuildContext context){
+
+routesCambiarClave(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => screenCambiarClave()),
   );
 }
-routesChatUsuario(BuildContext context,String idChat,modelUsuario){
+
+routesChatUsuario(BuildContext context, String idChat, modelUsuario) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => screenChatUsuario(idChat: idChat,usuario: modelUsuario,)),
+    MaterialPageRoute(
+        builder: (context) => screenChatUsuario(
+              idChat: idChat,
+              usuario: modelUsuario,
+            )),
   );
 }
 
-
-routesLogin(BuildContext context){
+routesLogin(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => screenLogin()),

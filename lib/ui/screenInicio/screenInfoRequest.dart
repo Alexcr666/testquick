@@ -47,7 +47,6 @@ class _screenInfoRequestState extends State<screenInfoRequest> {
           new screenInicio(),
           new screenChats(),
           new screenEditarPerfil(),
-
         ],
       ),
       // backgroundColor: Colors.white,
@@ -72,17 +71,19 @@ class _screenInfoRequestState extends State<screenInfoRequest> {
             BottomNavigationBarItem(
               icon: Container(
                 margin: EdgeInsets.only(top: 5),
-                child: iconSvgColor("assets/images/icon/magnifying-glass.svg", 33, 33,
-                    _currentIndex != 0 ? colorTextoOpacidad : colorPrimario),
+                child: iconSvgColor(
+                    "assets/images/icon/magnifying-glass.svg",
+                    33,
+                    33,
+                    _currentIndex != 1 ? colorTextoOpacidad : colorPrimario),
               ),
               title: espaciado(10, 0),
             ),
-
             BottomNavigationBarItem(
               icon: Container(
                 margin: EdgeInsets.only(top: 5),
                 child: iconSvgColor("assets/images/icon/avatar.svg", 30, 30,
-                    _currentIndex != 3 ? colorTextoOpacidad : colorPrimario),
+                    _currentIndex != 2 ? colorTextoOpacidad : colorPrimario),
               ),
               title: espaciado(10, 0),
             )

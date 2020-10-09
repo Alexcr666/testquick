@@ -5,7 +5,8 @@ import 'package:testquick/widget/card/cardInicio.dart';
 import 'package:testquick/widget/card/cardItemChat.dart';
 import 'package:testquick/widget/widget.dart';
 
-Widget endPointListaUsuarios(BuildContext context, int vista) {
+Widget endPointListaUsuarios(
+    BuildContext context, int vista, String filtroUsuario) {
   return StreamBuilder(
     stream: Firestore.instance.collection('usuarios').snapshots(),
     builder: (context, snapshot) {
@@ -17,8 +18,8 @@ Widget endPointListaUsuarios(BuildContext context, int vista) {
               height: 200,
               // margin: EdgeInsets.only(left: 10, right: 10),
               child: ListView.builder(
-               scrollDirection:    vista == 1?Axis.horizontal: Axis.vertical,
-                  physics: NeverScrollableScrollPhysics(),
+                  scrollDirection: vista == 1 ? Axis.horizontal : Axis.vertical,
+                  // physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: snapshot.data.documents.length,
                   itemBuilder: (BuildContext context, int i) {
@@ -45,29 +46,32 @@ Widget endPointListaUsuarios(BuildContext context, int vista) {
                           ? snapshot.data.documents[i]["descripcionPerfil"]
                               .toString()
                           : "",
-                      snapshot.data.documents[i]["direccion"].toString() !=
-                              "null"
-                          ? snapshot.data.documents[i]["direccion"].toString()
-                          : "",
-                      snapshot.data.documents[i]["empresa"].toString() != "null"
-                          ? snapshot.data.documents[i]["empresa"].toString()
-                          : "",
-                      snapshot.data.documents[i]["fechaNacimiento"]
-                                  .toString() !=
-                              "null"
-                          ? snapshot.data.documents[i]["fechaNacimiento"]
-                              .toString()
-                          : "MM/DD/YYYY",
                       snapshot.data.documents[i]["tokem"].toString(),
                     );
+                    if (filtroUsuario.toString().trim().length != 0) {
 
-                    switch (vista) {
-                      case 1:
-                        return widgetCardChat(context, data);
-                        break;
-                      case 2:
-                        return cardItemChat(context, data);
-                        break;
+                      if (data.nombreCompleto.toLowerCase().contains(
+                              filtroUsuario.toString().toLowerCase()) ==
+                          true) {
+                        switch (vista) {
+                          case 1:
+                            return widgetCardChat(context, data);
+                            break;
+                          case 2:
+                            return cardItemChat(context, data);
+                            break;
+                        }
+                      }
+                    } else {
+
+                      switch (vista) {
+                        case 1:
+                          return widgetCardChat(context, data);
+                          break;
+                        case 2:
+                          return cardItemChat(context, data);
+                          break;
+                      }
                     }
                   }),
             );

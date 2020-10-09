@@ -46,8 +46,6 @@ funcionGuardarPefil() {
     String nombreCompleto = _controllerNombreCompleto.text;
     String tel = _controllerTelefono.text;
     String descripcion = _controllerDescripcionPerfil.text;
-    String direccion = _controllerDireccion.text;
-    String empresa = _controllerEmpresa.text;
 
     if (_controllerNombreCompleto.text.length > 3) {
       if (isEmail(correo) != true) {
@@ -59,17 +57,17 @@ funcionGuardarPefil() {
             // resetEmail(correo);
             convertBase64(_image).then((valueImagen) {
               endpointEditarUsuario(contex2, nombreCompleto, tel, correo,
-                  descripcion, direccion, empresa, tiempo, true, valueImagen);
+                  tiempo, true, valueImagen);
             });
           } else {
             print("prueba90");
             //resetEmail(correo);
             if (modelUser.foto.toString() == "null") {
               endpointEditarUsuario(contex2, nombreCompleto, tel, correo,
-                  descripcion, direccion, empresa, tiempo, true, null);
+                  descripcion, true, null);
             } else {
-              endpointEditarUsuario(contex2, nombreCompleto, tel, correo,
-                  descripcion, direccion, empresa, tiempo, false, "");
+              endpointEditarUsuario(
+                  contex2, nombreCompleto, tel, correo, descripcion, false, "");
             }
           }
         } else {
@@ -297,7 +295,6 @@ class _screenEditarPerfilState extends State<screenEditarPerfil> {
     //  SystemChrome.setEnabledSystemUIOverlays([]);
     contex2 = context;
     return Scaffold(
-
       //resizeToAvoidBottomInset: false,
       //resizeToAvoidBottomPadding: true,
       body: Stack(
@@ -320,20 +317,23 @@ class _screenEditarPerfilState extends State<screenEditarPerfil> {
                               child: Text(
                                 stringPerfil,
                                 style: estiloTextoSpacingFont1(
-                                    20, colorPrimario, true),
+                                    20, Colors.white, true),
                               )),
                           Expanded(child: SizedBox()),
                           GestureDetector(
                             onTap: () {
                               funcionDeslogueo(context);
                             },
-                            child: Container(
-                                alignment: Alignment.centerLeft,
-                                child: iconSvgColor(
-                                    "assets/images/icon/Icons-18.svg",
-                                    30,
-                                    30,
-                                    colorPrimario)),
+                            child: RotatedBox(
+                              quarterTurns: 1,
+                              child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: iconSvgColor(
+                                      "assets/images/icon/upload-1.svg",
+                                      35,
+                                      35,
+                                      Colors.white)),
+                            ),
                           ),
                         ],
                       ),
@@ -348,19 +348,19 @@ class _screenEditarPerfilState extends State<screenEditarPerfil> {
                         },
                         child: _image != null
                             ? ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                              child: Container(
-                                  height: 150,
-                                  width: 150,
-                                  child: Image.file(
-                                    _image,
+                                borderRadius: BorderRadius.circular(100),
+                                child: Container(
                                     height: 150,
                                     width: 150,
-                                  )),
-                            )
+                                    child: Image.file(
+                                      _image,
+                                      height: 150,
+                                      width: 150,
+                                    )),
+                              )
                             : ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                              child: Container(
+                                borderRadius: BorderRadius.circular(100),
+                                child: Container(
                                   height: 150,
                                   width: 150,
                                   child: modelUser.toString() == "null"
@@ -375,46 +375,32 @@ class _screenEditarPerfilState extends State<screenEditarPerfil> {
                                               height: 150,
                                               width: 150,
                                             )
-                                          : widgetImage(modelUser.foto.toString(),
-                                              150, 150),
+                                          : widgetImage(
+                                              modelUser.foto.toString(),
+                                              150,
+                                              150),
                                 ),
-                            ),
+                              ),
                       ),
                       espaciado(20, 0),
                       Container(
-                        child: TextFormField(
-                          inputFormatters: [
-                            new WhitelistingTextInputFormatter(
-                                RegExp("[a -zA-Zá-úÁ-Ú0-9._,+#=¿?*/@-]")),
-                            LengthLimitingTextInputFormatter(100),
-                          ],
-                          validator: (value) {
-                            if (value.trim().isEmpty) {
-                              return favordigitarelcampoString;
-                            }
-                            return null;
-                          },
-                          style:
-                              estiloTextoSpacingFont4(15, Colors.white, true),
-                          textInputAction: TextInputAction.go,
-                          controller: _controllerNombreCompleto,
-                          decoration: estiloCampoTexto(stringNombreCompleto),)
-                      ),
-                      espaciado(20, 0),
-                      Container(
-                        child: TextField(
-                          inputFormatters: [
-                            new WhitelistingTextInputFormatter(
-                                RegExp("[a -zA-Zá-úÁ-Ú0-9._,+#=¿?*/@-]")),
-                            LengthLimitingTextInputFormatter(100),
-                          ],
-                          style:
-                              estiloTextoSpacingFont4(15, Colors.white, true),
-                          textInputAction: TextInputAction.go,
-                          controller: _controllerEmpresa,
-                          decoration: estiloCampoTexto(stringEmpresa),
-                        ),
-                      ),
+                          child: TextFormField(
+                        inputFormatters: [
+                          new WhitelistingTextInputFormatter(
+                              RegExp("[a -zA-Zá-úÁ-Ú0-9._,+#=¿?*/@-]")),
+                          LengthLimitingTextInputFormatter(100),
+                        ],
+                        validator: (value) {
+                          if (value.trim().isEmpty) {
+                            return favordigitarelcampoString;
+                          }
+                          return null;
+                        },
+                        style: estiloTextoSpacingFont4(15, Colors.white, true),
+                        textInputAction: TextInputAction.go,
+                        controller: _controllerNombreCompleto,
+                        decoration: estiloCampoTexto(stringNombreCompleto),
+                      )),
                       espaciado(20, 0),
                       Container(
                         height: 5 * 24.0,
@@ -429,31 +415,30 @@ class _screenEditarPerfilState extends State<screenEditarPerfil> {
                           textInputAction: TextInputAction.go,
                           maxLines: 5,
                           controller: _controllerDescripcionPerfil,
-                          decoration: estiloCampoTextoMulti(stringDescripcionPerfil),
+                          decoration:
+                              estiloCampoTextoMulti(stringDescripcionPerfil),
                         ),
                       ),
-
                       espaciado(20, 0),
                       Container(
                         child: TextFormField(
-                          validator: (value) {
-                            if (value.trim().isEmpty) {
-                              return favordigitarelcampoString;
-                            }
-                            return null;
-                          },
-                          focusNode: _nodeText1,
-                          style:
-                              estiloTextoSpacingFont4(15, Colors.white, true),
-                          inputFormatters: [
-                            WhitelistingTextInputFormatter.digitsOnly,
-                            LengthLimitingTextInputFormatter(100),
-                          ],
-                          keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.go,
-                          controller: _controllerTelefono,
-                          decoration: estiloCampoTexto(stringTelefono)
-                        ),
+                            validator: (value) {
+                              if (value.trim().isEmpty) {
+                                return favordigitarelcampoString;
+                              }
+                              return null;
+                            },
+                            focusNode: _nodeText1,
+                            style:
+                                estiloTextoSpacingFont4(15, Colors.white, true),
+                            inputFormatters: [
+                              WhitelistingTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(100),
+                            ],
+                            keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.go,
+                            controller: _controllerTelefono,
+                            decoration: estiloCampoTexto(stringTelefono)),
                       ),
                       espaciado(20, 0),
                       Container(
@@ -476,12 +461,9 @@ class _screenEditarPerfilState extends State<screenEditarPerfil> {
                           decoration: estiloCampoTexto(stringCorreo),
                         ),
                       ),
-
                       espaciado(20, 0),
                       GestureDetector(
                         onTap: () {
-
-
                           routesCambiarClave(context);
                         },
                         child: Container(
@@ -584,26 +566,25 @@ class _screenEditarPerfilState extends State<screenEditarPerfil> {
           estadoImagen == true
               ? espaciado(0, 0)
               : Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Theme(
-                data: Theme.of(context)
-                    .copyWith(canvasColor: Colors.transparent),
-                child: GestureDetector(
-                    onTap: () {
-                      funcionGuardarPefil();
-                    },
-                    child: Container(
-
-                      child: widgetBottom(
-                          context,
-                          "assets/images/icon/Icons-12.svg",
-                          stringModificarPerfil),
-                    )),
-              )
-            ],
-          ),
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Theme(
+                      data: Theme.of(context)
+                          .copyWith(canvasColor: Colors.transparent),
+                      child: GestureDetector(
+                          onTap: () {
+                            funcionGuardarPefil();
+                          },
+                          child: Container(
+                            child: widgetBottom(
+                                context,
+                                "assets/images/icon/Icons-12.svg",
+                                stringModificarPerfil),
+                          )),
+                    )
+                  ],
+                ),
           estadoRecordeImagen != true
               ? espaciado(0, 0)
               : SafeArea(
@@ -625,9 +606,11 @@ class _screenEditarPerfilState extends State<screenEditarPerfil> {
   Widget _buildCroppingImage() {
     return Column(
       children: <Widget>[
-        Expanded(
-          child: Crop.file(_image, key: cropKey),
-        ),
+        _image == null
+            ? espaciado(0, 0)
+            : Expanded(
+                child: Crop.file(_image, key: cropKey),
+              ),
         Container(
           padding: const EdgeInsets.only(top: 20.0),
           alignment: AlignmentDirectional.center,
@@ -689,13 +672,9 @@ class _screenEditarPerfilState extends State<screenEditarPerfil> {
       modelUser = value;
 
       _controllerNombreCompleto.text = value.nombreCompleto;
-      _controllerEmpresa.text = value.empresa;
       _controllerDescripcionPerfil.text = value.descripcionPerfil;
       _controllerTelefono.text = value.tel;
       _controllerCorreo.text = value.email;
-      _controllerDireccion.text = value.direccion;
-
-      tiempo = value.fechaNacimiento;
       actualizar();
     });
   }

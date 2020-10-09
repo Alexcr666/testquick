@@ -30,25 +30,12 @@ class _screenRecuperarClaveState extends State<screenRecuperarClave> {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
 
     return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/image/relojApp.jpg"), fit: BoxFit.cover)),
+      color: colorFondo,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         // resizeToAvoidBottomPadding: false,
         body: Stack(
           children: [
-           /* Image.asset(
-              "assets/images/image/relojApp.jpg",
-              height: double.infinity,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),*/
-            Container(
-              width: double.infinity,
-              height: double.infinity,
-              color: Colors.black.withOpacity(0.6),
-            ),
             Container(
               child: SingleChildScrollView(
                 child: Column(
@@ -124,8 +111,11 @@ class _screenRecuperarClaveState extends State<screenRecuperarClave> {
                                           "",
                                           "assets/images/header2png.png",
                                           1);
-                                      flusbarMensaje(notificacionString,
-                                          "Correo enviado", Colors.blue, context);
+                                      flusbarMensaje(
+                                          notificacionString,
+                                          "Correo enviado",
+                                          Colors.blue,
+                                          context);
                                       // _controllerEmailRecuperar.clear();
                                     }).catchError((e) {
                                       flusbarMensaje(
@@ -149,7 +139,6 @@ class _screenRecuperarClaveState extends State<screenRecuperarClave> {
                               },
                               child: buttonApp(stringEnviar)),
                           espaciado(20, 0),
-
                           espaciado(0, 20),
                         ],
                       ),

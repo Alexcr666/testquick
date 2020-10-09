@@ -9,24 +9,22 @@ import 'package:testquick/widget/widget.dart';
 
 Widget cardItemChat(BuildContext context, modelUsuario data) {
   return Container(
-    margin: EdgeInsets.only(top: 20,left: 20),
+    margin: EdgeInsets.only(top: 20, left: 20),
     child: ListTile(
       onTap: () {
-        endPointConsultarChat(data.uid).then((value){
-          if(value != false){
-            routesChatUsuario(context,value,data);
-          }else{
-            flusbarMensaje(notificacionString, errorNotificacionString,Colors.red, context);
+        endPointConsultarChat(data.uid).then((value) {
+          if (value != false) {
+            routesChatUsuario(context, value, data);
+          } else {
+            flusbarMensaje(notificacionString, errorNotificacionString,
+                Colors.red, context);
           }
-
         });
-
       },
       title:
           Text(data.nombreCompleto, style: estiloTexto(22, Colors.white, true)),
-      subtitle: Text("mensaje", style: estiloTexto(18, Colors.white, false)),
+      subtitle: Text(data.email, style: estiloTexto(18, Colors.white, false)),
       leading: ClipRRect(
-
           borderRadius: BorderRadius.circular(40),
           child: widgetImage(data.foto, 60, 60)),
     ),

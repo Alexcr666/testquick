@@ -38,32 +38,6 @@ Widget widgetDivider() {
   );
 }
 
-Future widgetAlertConfirmacionSalirSinGuardar(BuildContext context) {
-  return showDialog(
-    context: context,
-    builder: (_) => AlertDialog(
-      // title: Text('Notificaciones'),
-      content: Text(stringDeseaSalirSinGuardar),
-      actions: [
-        FlatButton(
-            child: Text(stringAceptar),
-            textColor: Colors.black,
-            onPressed: () {
-              Navigator.of(context).pop();
-
-              Navigator.of(context).pop();
-            }),
-        FlatButton(
-            child: Text(stringCancelar),
-            textColor: Colors.black,
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
-      ],
-    ),
-  );
-}
-
 Widget widgettextValidadorFormulario(bool estado) {
   return estado != true
       ? espaciado(0, 0)
@@ -71,7 +45,7 @@ Widget widgettextValidadorFormulario(bool estado) {
           alignment: Alignment.centerLeft,
           margin: EdgeInsets.only(top: 10, bottom: 5, left: 20),
           child: Text(
-            stringCampoRequerido,
+            "Campo requerido",
             style: TextStyle(color: Colors.red),
           ));
 }
@@ -93,8 +67,6 @@ Widget widgetOpacity(_display, Widget widget) {
   );
 }
 
-
-
 Widget widgetImage(String urlFoto, double width, double heigth) {
   return Container(
     width: width,
@@ -108,48 +80,7 @@ Widget widgetImage(String urlFoto, double width, double heigth) {
         FadeInImage(
       placeholder: AssetImage('assets/images/placeholder.png'),
       image: MemoryImage(base64Decode(urlFoto)),
-          fit: BoxFit.cover,
-    ),
-  );
-}
-
-Widget widgetItemFiltro1(String texto, bool estado) {
-  return Container(
-    color: estado != true ? colorPrimario : Colors.white,
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        espaciado(10, 0),
-        Container(
-          margin: EdgeInsets.only(left: 20, right: 20),
-          child: Text(
-            texto,
-            style: estiloTextoSpacing(
-                12, estado != true ? Colors.white : colorPrimario, false),
-          ),
-        ),
-        espaciado(10, 0),
-        Container(
-            margin: EdgeInsets.only(left: 20, right: 20),
-            child: widgetDivision()),
-      ],
-    ),
-  );
-}
-
-Widget widgetItemFiltro2(String texto, bool filtro) {
-  return Container(
-    padding: const EdgeInsets.all(4),
-    decoration: BoxDecoration(
-      border: Border.all(color: filtro != true ? colorPrimario : Colors.white),
-      borderRadius: BorderRadius.all(
-          Radius.circular(15) //                 <--- border radius here
-          ),
-    ),
-    child: Text(
-      texto,
-      style: estiloTextoSpacing(10, Colors.white, false),
+      fit: BoxFit.cover,
     ),
   );
 }
@@ -166,95 +97,16 @@ Widget widgetBottom(BuildContext context, String url, String texto) {
               child: Row(
                 children: [
                   Expanded(child: SizedBox()),
-                  iconSvgColor(url, 32, 32, colorPrimario),
+                  iconSvgColor(url, 32, 32, Colors.white),
                   espaciado(0, 10),
                   Text(
                     texto,
-                    style: estiloTextoSpacingFont1(16, colorPrimario, true),
+                    style: estiloTextoSpacingFont1(16, Colors.white, true),
                   ),
                   Expanded(child: SizedBox()),
                 ],
               ),
             )),
-      ),
-    ],
-  );
-}
-
-Widget widgetIconCheckSi(String urlIcon, String titulo, Color colorPrimario) {
-  return Container(
-    //height: 40,
-    // margin: EdgeInsets.only(left: 5),
-
-    child: Column(
-      children: [
-        espaciado(5, 0),
-        Container(
-          child: Row(
-            children: [
-              espaciado(0, 10),
-              iconSvgColor(urlIcon, 21, 21, Colors.white),
-              espaciado(0, 10),
-              Text(titulo, style: estiloTexto(15, Colors.white, false)),
-              //  espaciado(0, 8),
-              espaciado(0, 10),
-            ],
-          ),
-        ),
-        espaciado(4, 0),
-      ],
-    ),
-    decoration: BoxDecoration(
-      color: colorPrimario,
-      borderRadius:
-          new BorderRadius.vertical(top: new Radius.elliptical(10, 10)),
-    ),
-  );
-}
-
-Widget widgetIconCheck(String urlIcon, String titulo, Color colorPrimario) {
-  return Container(
-    //height: 40,
-    // margin: EdgeInsets.only(left: 5),
-
-    child: Column(
-      children: [
-        espaciado(5, 0),
-        Container(
-          child: Row(
-            children: [
-              espaciado(0, 10),
-              iconSvgColor(urlIcon, 21, 21, colorPrimario),
-              espaciado(0, 10),
-              Text(titulo, style: estiloTexto(15, colorPrimario, false)),
-              espaciado(0, 10),
-            ],
-          ),
-        ),
-        espaciado(4, 0),
-      ],
-    ),
-    decoration: BoxDecoration(
-      //color: Colors.white,
-      borderRadius:
-          new BorderRadius.vertical(top: new Radius.elliptical(10, 10)),
-    ),
-  );
-}
-
-Widget widgetIconCheck2(
-    String urlIcon, String titulo, String texto2, Color colorPrimario) {
-  return Row(
-    children: [
-      espaciado(0, 10),
-      iconSvgColor(urlIcon, 30, 30, colorPrimario),
-      espaciado(0, 10),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(titulo, style: estiloTexto(18, colorPrimario, true)),
-          Text(texto2, style: estiloTexto(10, colorPrimario, true)),
-        ],
       ),
     ],
   );
@@ -330,92 +182,6 @@ Widget widgetOpcionTexto2(String fecha) {
   );
 }
 
-Widget widgetOpcionesRelojes(String urlIcon) {
-  return Container(
-    child: Image.asset(
-      "assets/images/relog/rolex1.png",
-      height: 80,
-    ),
-    height: 100,
-    decoration: BoxDecoration(
-      color: colorRelojesFondo,
-      borderRadius: BorderRadius.all(Radius.circular(10) //
-          //        <--- border radius here
-          ),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.3),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3), // changes position of shadow
-        ),
-      ],
-    ),
-  );
-}
-
-Widget widgetOpcionesAgregarFotoPrincipal(File file) {
-  return Container(
-    width: 100,
-    child: file == null
-        ? Container(
-            margin: EdgeInsets.all(30),
-            child: iconSvgColor("assets/images/icon/iconClockPrincipal.svg", 20,
-                20, colorPrimario))
-        : ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.file(
-              file,
-              height: 80,
-            ),
-          ),
-    height: 100,
-    decoration: new BoxDecoration(
-      color: Colors.white,
-      borderRadius: new BorderRadius.all(Radius.circular(10)),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.3),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3), // changes position of shadow
-        ),
-      ],
-    ),
-  );
-}
-
-Widget widgetOpcionesAgregarFoto(File file) {
-  return Container(
-    width: 100,
-    child: file == null
-        ? Icon(
-            Icons.add,
-            color: colorPrimario,
-          )
-        : ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.file(
-              file,
-              height: 80,
-            ),
-          ),
-    height: 100,
-    decoration: new BoxDecoration(
-      color: Colors.white,
-      borderRadius: new BorderRadius.all(Radius.circular(10)),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.3),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3), // changes position of shadow
-        ),
-      ],
-    ),
-  );
-}
-
 Widget widgetOpcionesAgregarFotoNetwork(String url) {
   return Container(
     width: 100,
@@ -443,56 +209,6 @@ Widget widgetOpcionesAgregarFotoNetwork(String url) {
           offset: Offset(0, 3), // changes position of shadow
         ),
       ],
-    ),
-  );
-}
-
-Widget widgetOpcionesRelojesImagen(File file) {
-  return Container(
-    child: file == null
-        ? Image.asset(
-            "assets/images/relog/rolex1.png",
-            height: 80,
-          )
-        : Image.file(
-            file,
-            height: 80,
-          ),
-    height: 100,
-    decoration: BoxDecoration(
-      color: colorRelojesFondo,
-      borderRadius: BorderRadius.all(Radius.circular(10) //
-          //        <--- border radius here
-          ),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.3),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3), // changes position of shadow
-        ),
-      ],
-    ),
-  );
-}
-
-Widget widgetBotonOpciones(String texto) {
-  return Container(
-    height: 50,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-            Radius.circular(10) //         <--- border radius here
-            ),
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [colorDegradado1, colorDegradado2])),
-    child: Center(
-      child: Text(
-        texto,
-        textAlign: TextAlign.center,
-        style: estiloTexto(14, Colors.white, false),
-      ),
     ),
   );
 }
@@ -655,52 +371,6 @@ alertOpcionesLogin(
       });
 }
 
-Widget widgetBotonRenovacion() {
-  return Container(
-    padding: EdgeInsets.only(left: 3, right: 3, top: 3, bottom: 3),
-    child: Row(
-      children: [
-        espaciado(0, 5),
-        Icon(
-          Icons.update,
-          color: Colors.white,
-        ),
-        espaciado(0, 5),
-        Text(stringRenovar2 + "  ", style: estiloTexto(11, Colors.white, true)),
-      ],
-    ),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(8),
-      color: colorPrimario,
-    ),
-  );
-}
-
-Widget widgetItemCompartirDatos(String titulo1, String titulo2, int fuente) {
-  return Container(
-    margin: EdgeInsets.only(top: 10),
-    child: GestureDetector(
-      onTap: () {
-        if (fuente == 2) {
-          funcionLLamarNumero(titulo2);
-        }
-        if (fuente == 3) {
-          funcionEnviarEmail(titulo2);
-        }
-      },
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(titulo1.toString() + ": ",
-              style: estiloTexto(15, colorTexto, true)),
-          espaciado(10, 0),
-          Text(titulo2.toString(), style: estiloTexto(15, colorTexto, false)),
-        ],
-      ),
-    ),
-  );
-}
-
 Widget buttonApp(String titulo) {
   return FadeAnimation(
     2,
@@ -739,95 +409,8 @@ Widget buttonStyle(var color, String texto, double sizeText, var colorText) {
   );
 }
 
-Widget buttonStyleIconCheck(
-    var color, String texto, double sizeText, var colorText) {
-  return Container(
-    decoration: new BoxDecoration(
-      color: color,
-      borderRadius: new BorderRadius.all(Radius.circular(25)),
-      boxShadow: [
-        BoxShadow(
-          color: colorPrincipal.withOpacity(0.3),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3), // changes position of shadow
-        ),
-      ],
-    ),
-    child: Center(
-        child: Row(
-      children: [
-        Expanded(child: SizedBox()),
-        Text(
-          texto,
-          style: TextStyle(
-              fontSize: sizeText,
-              color: colorText,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2.0),
-        ),
-        espaciado(20, 0),
-        Container(
-          width: 32,
-          height: 32,
-          child: Icon(
-            Icons.check,
-            size: 30,
-            color: colorPrincipal,
-          ),
-          decoration:
-              BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-        ),
-        Expanded(child: SizedBox()),
-      ],
-    )),
-  );
-}
 
-Widget buttonStyleIcon(
-    var color, String texto, double sizeText, var colorText) {
-  return Container(
-    decoration: new BoxDecoration(
-      color: color,
-      borderRadius: new BorderRadius.all(Radius.circular(25)),
-      boxShadow: [
-        BoxShadow(
-          color: colorPrincipal.withOpacity(0.3),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3), // changes position of shadow
-        ),
-      ],
-    ),
-    child: Center(
-        child: Row(
-      children: [
-        Expanded(child: SizedBox()),
-        Text(
-          texto,
-          style: TextStyle(
-              fontSize: sizeText,
-              color: colorText,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2.0),
-        ),
-        espaciado(20, 0),
-        Container(
-          width: 32,
-          height: 32,
-          child: Icon(
-            Icons.arrow_forward,
-            size: 30,
-            color: colorPrincipal,
-          ),
-          decoration:
-              BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-        ),
-        Expanded(child: SizedBox()),
-      ],
-    )),
-  );
-}
+
 
 showProgressGlobal(var context, bool estado) {
   if (estado == true) {
@@ -876,108 +459,4 @@ flusbarMensaje(String titulo, String mensaje, var color, var context) {
     backgroundColor: color,
     //  boxShadows: [BoxShadow(color: Colors.red[800], offset: Offset(0.0, 2.0), blurRadius: 3.0,)],
   )..show(context);
-}
-
-Widget widgetBotonOpcionesNoOpciones(String texto) {
-  return Container(
-    height: 50,
-    decoration: BoxDecoration(boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.2),
-        spreadRadius: 5,
-        blurRadius: 10,
-        offset: Offset(0, 3), // changes position of shadow
-      ),
-    ], color: Colors.white),
-    child: Center(
-      child: Text(
-        texto,
-        textAlign: TextAlign.center,
-        style: estiloTexto(16, colorTexto, false),
-      ),
-    ),
-  );
-}
-
-Widget widgetBotonOpcionesNoOpcionesIcon() {
-  return Container(
-    height: 50,
-    decoration: BoxDecoration(boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.2),
-        spreadRadius: 5,
-        blurRadius: 10,
-        offset: Offset(0, 3), // changes position of shadow
-      ),
-    ], color: Colors.white),
-    child: Center(
-      child: iconSvgColor(
-          "assets/images/icon/Icons-21.svg", 40, 40, colorTextoOpacidad),
-    ),
-  );
-}
-
-Widget widgetBotonOpcionesSiOpcionesIcon() {
-  return Container(
-    height: 50,
-    decoration: BoxDecoration(boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.2),
-        spreadRadius: 5,
-        blurRadius: 10,
-        offset: Offset(0, 3), // changes position of shadow
-      ),
-    ], color: colorPrimario),
-    child: Center(
-      child:
-          iconSvgColor("assets/images/icon/Icons-21.svg", 40, 40, Colors.white),
-    ),
-  );
-}
-
-Widget widgetBotonOpcionesSiOpciones(String texto) {
-  return Container(
-    height: 50,
-    decoration: BoxDecoration(boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.2),
-        spreadRadius: 5,
-        blurRadius: 10,
-        offset: Offset(0, 3), // changes position of shadow
-      ),
-    ], color: colorPrimario),
-    child: Center(
-      child: Text(
-        texto,
-        textAlign: TextAlign.center,
-        style: estiloTexto(16, Colors.white, false),
-      ),
-    ),
-  );
-}
-
-Widget widgetBotonOpcionesNo(String texto) {
-  return Container(
-    height: 50,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10) //
-            //        <--- border radius here
-            ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 5,
-            blurRadius: 10,
-            offset: Offset(0, 3), // changes position of shadow
-          ),
-        ],
-        color: Colors.white),
-    child: Center(
-      child: Text(
-        texto,
-        textAlign: TextAlign.center,
-        style: estiloTexto(14, colorTexto, false),
-      ),
-    ),
-  );
 }

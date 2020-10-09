@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1057898104024-2ckl66is7bgajr86gkk52720u3lv9vod.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1057898104024-2ckl66is7bgajr86gkk52720u3lv9vod</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAO1NF4m_4gaBEH9agGxLmwGicUl6bIEjQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1057898104024</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.app.testquick</string>
+	<key>PROJECT_ID</key>
+	<string>testquick-be584</string>
+	<key>STORAGE_BUCKET</key>
+	<string>testquick-be584.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1057898104024:ios:26d5533a2e3368f638c3ad</string>
+	<key>DATABASE_URL</key>
+	<string>https://testquick-be584.firebaseio.com</string>
+</dict>
+</plist>

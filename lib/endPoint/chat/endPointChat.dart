@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:testquick/auth/auth.dart';
 import 'package:testquick/models/modelChat.dart';
 import 'package:testquick/ui/screenChat/screenChat.dart';
+import 'package:testquick/widget/card/cardItemChatAudio.dart';
 import 'package:testquick/widget/card/cardItemChatImagen.dart';
 import 'package:testquick/widget/card/cardItemChatTexto.dart';
 import 'package:testquick/widget/widget.dart';
@@ -36,8 +37,8 @@ Future endPointCrearMensaje(String idChat, String mensaje, int tipo) async {
     ref.setData({
       'mensaje': mensaje,
       'id': ref.documentID,
-      'idUsuario':uidUser,
-      'tipo':tipo,
+      'idUsuario': uidUser,
+      'tipo': tipo,
       'fecha': FieldValue.serverTimestamp(),
     });
 
@@ -49,7 +50,7 @@ Future endPointCrearMensaje(String idChat, String mensaje, int tipo) async {
 
 Future endPointConsultarChat(String idUsuario) async {
   Query querychat = databaseReference
-      .collection('relojes')
+      .collection('chats')
       .where("idUser1", isEqualTo: uidUser)
       .where("idUser2", isEqualTo: idUsuario);
 
@@ -61,13 +62,14 @@ Future endPointConsultarChat(String idUsuario) async {
         .where("idUser1", isEqualTo: idUsuario);
     QuerySnapshot data = await querychat.getDocuments();
     if (data.documents.length == 0) {
-      endPointCrearChat(uidUser, idUsuario).then((value) {
-        if (value != false) {
-          return value;
-        } else {
-          return false;
-        }
+      DocumentReference ref =
+          await Firestore.instance.collection("chats").document();
+      ref.setData({
+        'idUser1': uidUser,
+        'idUser2': idUsuario,
       });
+
+      return ref.documentID;
     } else {
       return data.documents[0].documentID;
     }
@@ -90,10 +92,9 @@ Widget endPointListaMensajes(BuildContext context, String idChat) {
       return snapshot.data.documents.length == 0
           ? widgetMisFavoritos(context)
           : Container(
-
               // margin: EdgeInsets.only(left: 10, right: 10),
               child: ListView.builder(
-                reverse: true,
+                  reverse: true,
                   controller: controllerListaChat,
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -106,7 +107,7 @@ Widget endPointListaMensajes(BuildContext context, String idChat) {
                       snapshot.data.documents[i]["idUsuario"],
                       snapshot.data.documents[i]["fecha"],
                     );
-                    switch(data.tipo){
+                    switch (data.tipo) {
                       case 1:
                         return cardItemChatTexto(context, data);
                         break;
@@ -114,10 +115,9 @@ Widget endPointListaMensajes(BuildContext context, String idChat) {
                         return cardItemChatImagen(context, data);
                         break;
                       case 3:
+                        return cardItemChatAudio(context, data);
                         break;
                     }
-
-
                   }),
             );
     },

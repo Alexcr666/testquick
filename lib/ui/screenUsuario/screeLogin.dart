@@ -29,24 +29,11 @@ class _screenLoginState extends State<screenLogin> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/image/relojApp.jpg"), fit: BoxFit.cover)),
+      color: colorFondo,
       child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Stack(
             children: [
-              /* Image.asset(
-                "assets/images/image/relojApp.jpg",
-                height: double.infinity,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),*/
-              Container(
-                width: double.infinity,
-                height: double.infinity,
-                color: Colors.black.withOpacity(0.6),
-              ),
               SingleChildScrollView(
                 child: Container(
                   child: Column(
@@ -64,7 +51,7 @@ class _screenLoginState extends State<screenLogin> {
                                     child: Column(
                                       children: <Widget>[
                                         Image.asset(
-                                          "assets/images/relog/rolex1.png",
+                                          "assets/images/image/logo.png",
                                           height: 170,
                                           width: 170,
                                         ),
@@ -74,9 +61,9 @@ class _screenLoginState extends State<screenLogin> {
                                           decoration: BoxDecoration(
                                               border: Border(
                                                   bottom: BorderSide(
-                                                      color: Colors.grey[100]))),
+                                                      color:
+                                                          Colors.grey[100]))),
                                           child: TextFormField(
-
                                             validator: (value) {
                                               if (value.trim().isEmpty) {
                                                 return favorCompletarElCampoString;
@@ -84,12 +71,15 @@ class _screenLoginState extends State<screenLogin> {
                                               return null;
                                             },
                                             inputFormatters: [
-                                              new WhitelistingTextInputFormatter(RegExp(
-                                                  "[a-zA-Zá-úÁ-Ú0-9._,+#=¿?*/@-]")),
-                                              LengthLimitingTextInputFormatter(100),
+                                              new WhitelistingTextInputFormatter(
+                                                  RegExp(
+                                                      "[a-zA-Zá-úÁ-Ú0-9._,+#=¿?*/@-]")),
+                                              LengthLimitingTextInputFormatter(
+                                                  100),
                                             ],
                                             controller: _ediUsuario,
-                                            style: TextStyle(color: Colors.white),
+                                            style:
+                                                TextStyle(color: Colors.white),
                                             decoration: InputDecoration(
                                                 border: InputBorder.none,
                                                 hintText: stringCorreoPrueba,
@@ -101,11 +91,14 @@ class _screenLoginState extends State<screenLogin> {
                                           padding: EdgeInsets.all(8.0),
                                           child: TextFormField(
                                             inputFormatters: [
-                                              new WhitelistingTextInputFormatter(RegExp(
-                                                  "[a-zA-Zá-úÁ-Ú0-9._,+#=¿?*/@-]")),
-                                              LengthLimitingTextInputFormatter(100),
+                                              new WhitelistingTextInputFormatter(
+                                                  RegExp(
+                                                      "[a-zA-Zá-úÁ-Ú0-9._,+#=¿?*/@-]")),
+                                              LengthLimitingTextInputFormatter(
+                                                  100),
                                             ],
-                                            style: TextStyle(color: Colors.white),
+                                            style:
+                                                TextStyle(color: Colors.white),
                                             validator: (value) {
                                               if (value.trim().isEmpty) {
                                                 return favorCompletarElCampoString;
@@ -158,15 +151,17 @@ class _screenLoginState extends State<screenLogin> {
                                         // If the form is valid, display a snackbar. In the real world,
                                         // you'd often call a server or save the information in a database.
 
-                                      }else{
-                                        if(_ediUsuario.text.trim().length == 0){
+                                      } else {
+                                        if (_ediUsuario.text.trim().length ==
+                                            0) {
                                           flusbarMensaje(
                                               notificacionString,
                                               stringFaltaCorreo,
                                               Colors.red,
                                               context);
                                         }
-                                        if(_ediPassword.text.trim().length == 0){
+                                        if (_ediPassword.text.trim().length ==
+                                            0) {
                                           flusbarMensaje(
                                               notificacionString,
                                               stringFaltaClave,
@@ -178,7 +173,8 @@ class _screenLoginState extends State<screenLogin> {
                                     child: Container(
                                       height: 50,
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           gradient: LinearGradient(colors: [
                                             colorPrimario,
                                             colorPrimario,
@@ -220,14 +216,14 @@ class _screenLoginState extends State<screenLogin> {
                                         Expanded(child: SizedBox()),
                                         Text(
                                           stringNoTienesCuenta,
-                                          style:
-                                              estiloTexto(15, Colors.white, true),
+                                          style: estiloTexto(
+                                              15, Colors.white, true),
                                         ),
                                         espaciado(0, 10),
                                         Text(
                                           stringRegistrarse,
-                                          style:
-                                              estiloTexto(17, Colors.blue, true),
+                                          style: estiloTexto(
+                                              17, Colors.blue, true),
                                         ),
                                         Expanded(child: SizedBox()),
                                       ],

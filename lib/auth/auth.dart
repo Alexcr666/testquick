@@ -13,8 +13,6 @@ import 'package:testquick/utils/style.dart';
 import 'package:testquick/utils/utils.dart';
 import 'package:testquick/widget/widget.dart';
 
-
-
 final databaseReference = Firestore.instance;
 final FirebaseAuth auth = FirebaseAuth.instance;
 String uidUser = "";
@@ -64,29 +62,12 @@ Future endPointActualizarTokenUsuario(
   });
 }
 
-Future endPointActualizarIntroducionUsuario(String titulo, bool estado) async {
-
-  databaseReference
-      .collection('usuarios')
-      .document(uidUser)
-      .collection("introducion")
-  .document(titulo)
-      .setData({
-        "valor": estado,
-      })
-      .then((value) {})
-      .catchError((onError) {});
-}
-
 Future endpointEditarUsuario(
   BuildContext context,
   String nombreCompleto,
   String celular,
   String correo,
   String descripcionPerfil,
-  String direccion,
-  String empresa,
-  String tiempo,
   bool imagen,
   String imagenRuta,
 ) async {
@@ -99,15 +80,12 @@ Future endpointEditarUsuario(
       'nombreCompleto': nombreCompleto,
       'email': correo,
       'tel': celular,
-      'empresa': empresa,
-      'direccion': direccion,
-      'fechaNacimiento': tiempo,
       'foto': imagenRuta,
       'descripcionPerfil': descripcionPerfil,
     }).then((value) {
       showProgressGlobal(context, false);
-      flusbarMensaje(notificacionString, stringPerfilActualizado,
-          colorPrimario, context);
+      flusbarMensaje(
+          notificacionString, stringPerfilActualizado, colorPrimario, context);
       // flusbarMensaje(
       //   notificacionString, stringOperacionExitosa, colorPrincipal, context);
     }).catchError((onError) {
@@ -119,9 +97,6 @@ Future endpointEditarUsuario(
     databaseReference.collection('usuarios').document(uidUser).updateData({
       'nombreCompleto': nombreCompleto,
       'email': correo,
-      'empresa': empresa,
-      'fechaNacimiento': tiempo,
-      'direccion': direccion,
       'descripcionPerfil': descripcionPerfil,
       'tel': celular,
     }).then((value) {
@@ -143,29 +118,6 @@ Future endpointEditarUsuario(
   });
 }
 
-Future endpointEditarUsuarioMetodoPago(
-    BuildContext context, String metodoPago) async {
-  CollectionReference ref = Firestore.instance.collection('usuarios_app');
-  QuerySnapshot eventsQuery =
-      await ref.where('uid', isEqualTo: uidUser).getDocuments();
-  eventsQuery.documents.forEach((msgDoc) {
-    msgDoc.reference.updateData({
-      'metodoPago': metodoPago,
-    }).then((value) {
-      //flusbarMensaje(notificacionString, datosIngresadosCorrectamenteString,
-      //  Colors.blue, context);
-    });
-  });
-}
-Future<bool> endPointConsultarIntroducionUsuario(String titulo) async {
-  DocumentReference userReference =
-  databaseReference.collection('usuarios').document(uidUser).collection("introducion").document(titulo);
-  DocumentSnapshot userRef = await userReference.get();
-return userRef.exists;
-
-
-
-}
 Future<modelUsuario> endPointUsuario() async {
   DocumentReference userReference =
       databaseReference.collection('usuarios').document(uidUser);
@@ -186,15 +138,6 @@ Future<modelUsuario> endPointUsuario() async {
     userRef.data["descripcionPerfil"].toString() != "null"
         ? userRef.data["descripcionPerfil"].toString()
         : "",
-    userRef.data["direccion"].toString() != "null"
-        ? userRef.data["direccion"].toString()
-        : "",
-    userRef.data["empresa"].toString() != "null"
-        ? userRef.data["empresa"].toString()
-        : "",
-    userRef.data["fechaNacimiento"].toString() != "null"
-        ? userRef.data["fechaNacimiento"].toString()
-        : "MM/DD/YYYY",
     userRef.data["tokem"].toString(),
   );
 
@@ -225,15 +168,6 @@ Future<modelUsuario> endPointUsuario2(String uid) async {
     userRef.documents[0]["descripcionPerfil"].toString() != "null"
         ? userRef.documents[0]["descripcionPerfil"].toString()
         : "",
-    userRef.documents[0]["direccion"].toString() != "null"
-        ? userRef.documents[0]["direccion"].toString()
-        : "",
-    userRef.documents[0]["empresa"].toString() != "null"
-        ? userRef.documents[0]["empresa"].toString()
-        : "",
-    userRef.documents[0]["fechaNacimiento"].toString() != "null"
-        ? userRef.documents[0]["fechaNacimiento"].toString()
-        : "MM/DD/YYYY",
     userRef.documents[0]["tokem"].toString(),
   );
 
@@ -255,90 +189,6 @@ Future verificarLogin() async {
   });
 }
 
-Widget endPointUserAuth(BuildContext context, String idDocumento) {
-  return StreamBuilder(
-    stream: Firestore.instance
-        .collection('usuarios')
-        .where("uid", isEqualTo: idDocumento)
-        .snapshots(),
-    builder: (context, snapshot) {
-      print("resultados usuario" +
-          snapshot.data.documents.length.toString() +
-          " : $idDocumento");
-      if (!snapshot.hasData) return Text("No data");
-      modelUsuario data = new modelUsuario(
-        snapshot.data.documents[0]["id"].toString(),
-        snapshot.data.documents[0]["uid"].toString(),
-        snapshot.data.documents[0]["nombreCompleto"].toString(),
-        snapshot.data.documents[0]["email"].toString(),
-        snapshot.data.documents[0]["tel"].toString(),
-        snapshot.data.documents[0]["foto"].toString(),
-        snapshot.data.documents[0]["descripcionPerfil"].toString(),
-        snapshot.data.documents[0]["direccion"].toString(),
-        snapshot.data.documents[0]["empresa"].toString(),
-        snapshot.data.documents[0]["fechaNacimiento"].toString(),
-        snapshot.data.documents[0]["token"].toString(),
-      );
-      return Column(
-        children: [
-          espaciado(0, 20),
-          Row(
-            children: [
-              GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                      margin: EdgeInsets.only(bottom: 60, left: 20),
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: Offset(0, 3), // changes position of shadow
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                          child: Icon(
-                        Icons.arrow_back,
-                        color: colorGrisIconos,
-                        size: 25,
-                      )))),
-              Expanded(child: SizedBox()),
-              Container(
-                height: 115,
-                width: 115,
-                child: CircleAvatar(
-                  radius: 100,
-                  backgroundImage: NetworkImage(data.foto.toString() != "null"
-                      ? data.foto.toString()
-                      : 'https://via.placeholder.com/150'),
-                  backgroundColor: Colors.transparent,
-                ),
-              ),
-              Expanded(child: SizedBox()),
-              espaciado(65, 0),
-            ],
-          ),
-          espaciado(0, 20),
-          Container(
-              alignment: Alignment.center,
-              child: Text(
-                data.nombreCompleto,
-                style: estiloTexto(30, colorPrincipal, false),
-              )),
-        ],
-      );
-    },
-  );
-}
-
 Future<FirebaseUser> authLogueo(
     BuildContext context, String email, String password) async {
   try {
@@ -356,9 +206,7 @@ Future<FirebaseUser> authLogueo(
     guardarSession(uidUser);
     showProgressGlobal(context, false);
 
-      routesInicio(context);
-
-
+    routesInicio(context);
 
     return user;
   } catch (e) {

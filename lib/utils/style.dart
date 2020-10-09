@@ -7,7 +7,8 @@ estiloTexto(double size, var color, bool bold) {
       color: color,
       fontWeight: bold != true ? FontWeight.normal : FontWeight.bold);
 }
-estiloCampoTexto(String hint){
+
+estiloCampoTexto(String hint) {
   return InputDecoration(
     border: new OutlineInputBorder(
       borderSide: BorderSide(
@@ -19,13 +20,13 @@ estiloCampoTexto(String hint){
       ),
     ),
     hintText: hint,
-    hintStyle:
-    new TextStyle(color: colorTextoOpacidad),
+    hintStyle: new TextStyle(color: colorTextoOpacidad),
     fillColor: colorBlancoOpacidad,
     filled: true,
   );
 }
-estiloCampoTextoSearch(String hint){
+
+estiloCampoTextoSearch(String hint) {
   return InputDecoration(
     border: new OutlineInputBorder(
       borderSide: BorderSide(
@@ -37,20 +38,20 @@ estiloCampoTextoSearch(String hint){
       ),
     ),
     hintText: hint,
-    hintStyle:
-    new TextStyle(color: Colors.white),
+    hintStyle: new TextStyle(color: Colors.white),
     fillColor: colorTextoOpacidad,
     filled: true,
   );
 }
-estiloRedondeado(var color,double num){
+
+estiloRedondeado(var color, double num) {
   return BoxDecoration(
     borderRadius: BorderRadius.circular(num),
-    color:color,
-
+    color: color,
   );
 }
-estiloCampoTextoMulti(String hint){
+
+estiloCampoTextoMulti(String hint) {
   return InputDecoration(
     border: new OutlineInputBorder(
       borderSide: BorderSide(
@@ -61,8 +62,7 @@ estiloCampoTextoMulti(String hint){
         const Radius.circular(30),
       ),
     ),
-    hintStyle:
-    new TextStyle(color: colorTextoOpacidad),
+    hintStyle: new TextStyle(color: colorTextoOpacidad),
     hintText: hint,
     fillColor: colorBlancoOpacidad,
     filled: true,
