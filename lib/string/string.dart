@@ -136,3 +136,4 @@ String stringAppName = "TestQuick";
 String stringGrabando = "Grabando..";
 String stringCreador = "Alex Cabarcas R";
 String stringTelefonoCreador = "3013928129";
+String stringMensaje = "Mensaje";

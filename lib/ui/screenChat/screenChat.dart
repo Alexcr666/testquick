@@ -246,7 +246,7 @@ class _screenChatUsuarioState extends State<screenChatUsuario> {
                                         15, Colors.white, true),
                                     textInputAction: TextInputAction.go,
                                     decoration:
-                                        estiloCampoTexto(stringTelefono)),
+                                        estiloCampoTexto(stringMensaje)),
                           ),
                         ),
                         estadoEscribiendo == true
